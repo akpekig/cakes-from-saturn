@@ -3,7 +3,7 @@ import { json, type LoaderFunctionArgs } from "@remix-run/node"
 
 import { useChangeLanguage } from 'remix-i18next/react'
 import { useTranslation } from 'react-i18next'
-import i18next from '~/modules/i18next.server'
+import i18next from '@app/modules/i18next.server'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let locale = await i18next.getLocale(request)

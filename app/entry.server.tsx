@@ -7,10 +7,10 @@ import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { createInstance } from "i18next";
-import i18next from "~/modules/i18next.server";
+import i18next from "@app/modules/i18next.server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import Backend from "i18next-fs-backend";
-import i18n from "~/config/i18n";
+import i18n from "@app/config/i18n";
 import { resolve } from "node:path";
 
 const ABORT_DELAY = 5000;

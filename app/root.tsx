@@ -1,9 +1,9 @@
-import { Links, Meta, Outlet, Scripts, useLoaderData } from '@remix-run/react'
-import { json, type LoaderFunctionArgs } from "@remix-run/node"
-
-import { useChangeLanguage } from 'remix-i18next/react'
-import { useTranslation } from 'react-i18next'
 import i18next from '@app/modules/i18next.server'
+import appStyles from '@app/styles/app.scss?url'
+import { type LoaderFunctionArgs, json } from '@remix-run/node'
+import { Links, Meta, Outlet, Scripts, useLoaderData } from '@remix-run/react'
+import { useTranslation } from 'react-i18next'
+import { useChangeLanguage } from 'remix-i18next/react'
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let locale = await i18next.getLocale(request)
@@ -11,11 +11,16 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export let handle = {
-  // In the handle export, we can add a i18n key with namespaces our route
-  // will need to load. This key can be a single string or an array of strings.
-  // TIP: In most cases, you should set this to your defaultNS from your i18n config
-  // or if you did not set one, set it to the i18next default namespace "translation"
   i18n: 'common',
+}
+
+export function links() {
+  return [
+    {
+      rel: 'stylesheet',
+      href: appStyles,
+    },
+  ]
 }
 
 export default function App() {
@@ -28,12 +33,13 @@ export default function App() {
   return (
     <html lang={locale} dir={i18n.dir()}>
       <head>
-        <link rel="icon" href="data:image/x-icon;base64,AA" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body>
-        <h1>{t("brand")}</h1>
+        <h1>{t('brand')}</h1>
         <Outlet />
 
         <Scripts />

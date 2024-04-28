@@ -1,34 +1,30 @@
-import { createRequestHandler } from "@remix-run/express"
-import type { ServerBuild } from "@remix-run/node"
-import express from "express"
+import { createRequestHandler } from '@remix-run/express'
+import type { ServerBuild } from '@remix-run/node'
+import express from 'express'
 
 const viteDevServer =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === 'production'
     ? null
-    : await import("vite").then((vite) =>
+    : await import('vite').then((vite) =>
         vite.createServer({
           server: { middlewareMode: true },
-        })
+        }),
       )
 
 const app = express()
 
 app.use(
-  viteDevServer
-    ? viteDevServer.middlewares
-    : express.static("build/client")
+  viteDevServer ? viteDevServer.middlewares : express.static('build/client'),
 )
 
 const build = (viteDevServer
-  ? () =>
-      viteDevServer.ssrLoadModule(
-        "virtual:remix/server-build"
-      )
-  : await import("~/build/server/index.js")) as unknown as () => Promise<ServerBuild>
+  ? () => viteDevServer.ssrLoadModule('virtual:remix/server-build')
+  : await import(
+      '~/build/server/index.js'
+    )) as unknown as () => Promise<ServerBuild>
 
-
-app.all("*", createRequestHandler({ build }))
+app.all('*', createRequestHandler({ build }))
 
 app.listen(3000, () => {
-  console.log("🧁 Selling cakes on http://localhost:3000")
+  console.log('🧁 Selling cakes on http://localhost:3000')
 })

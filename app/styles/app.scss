@@ -1,4 +1,7 @@
+@import 'variables';
 @import 'fonts';
+@import 'mixins';
+@import 'index';
 
 * {
   font-family:
@@ -10,4 +13,106 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: $purple-dark;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column nowrap;
+  min-width: 100%;
+  min-height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(at center bottom, rgba($purple-dark, 0.85), rgba($black, 0.95)),
+    linear-gradient(to top, rgba($purple, 0.75), rgba($purple-dark, 0.75));
+  background-size: 400% 400%;
+}
+
+.stars {
+  background-image: url('/images/stars-large.png');
+  background-size: 400px;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: stars-large 40s linear infinite;
+  }
+
+  &,
+  &:before,
+  &::after {
+    position: absolute;
+    inset: 0;
+    background-position: 0;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+  }
+
+  &:before {
+    background-image: url('/images/stars-small.png');
+    background-size: 200px;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: stars-small 20s linear infinite;
+    }
+  }
+
+  &:after {
+    background-image: url('/images/stars-medium.png');
+    background-size: 300px;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: stars-medium 30s linear infinite;
+    }
+  }
+}
+
+
+@keyframes stars-large {
+  from {
+    background-position: 0 224px;
+  }
+
+  to {
+    background-position: 256px 0;
+  }
+}
+
+@keyframes stars-medium {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 -112px;
+  }
+}
+
+@keyframes stars-small {
+  from {
+    background-position: 0 56px;
+  }
+
+  to {
+    background-position: -64px 0;
+  }
 }

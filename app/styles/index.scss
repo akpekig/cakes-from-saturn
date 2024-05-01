@@ -1,0 +1,49 @@
+#pageHeading {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding: 6.25vw 0;
+    color: $scarlet;
+    font-size: 6.25vw;
+    font-weight: 700;
+
+    @include desktop {
+        padding: 4rem 0 4000px;
+        font-size: 4rem;
+    }
+}
+
+#pageHeadingStar {
+    position: absolute;
+    right: 0;
+    top: 7.41vw;
+    width: 1.95vw;
+    height: 1.95vw;
+    color: $pink-light;
+
+    @include desktop {
+        top: 4.75rem;
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+
+        animation: rotate-stars 1s;
+
+    }
+}
+
+@keyframes rotate-stars {
+    0% {
+        transform: rotate(0deg) scale(0);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(3);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}

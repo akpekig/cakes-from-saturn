@@ -26,7 +26,7 @@ export function links() {
 export default function App() {
   let { locale } = useLoaderData<typeof loader>()
 
-  let { t, i18n } = useTranslation()
+  let { i18n } = useTranslation()
 
   useChangeLanguage(locale)
 
@@ -39,9 +39,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <h1>{t('brand')}</h1>
         <Outlet />
-
         <Scripts />
       </body>
     </html>

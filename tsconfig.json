@@ -1,5 +1,7 @@
 {
   "include": [
+    "modules.d.ts",
+    "vite-env.d.ts",
     "remix.env.d.ts",
     "**/*.ts",
     "**/*.tsx",
@@ -10,7 +12,12 @@
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "types": ["@remix-run/node", "vite/client"],
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "vite-plugin-svgr/client",
+      "@remix-run/node",
+    ],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -26,7 +33,8 @@
     "paths": {
       "~/*": ["./*"],
       "@app/*": ["./app/*"],
-      "@api/*": ["./api/*"]
+      "@api/*": ["./api/*"],
+      "@public/*": ["./public/*"]
     },
 
     // Vite takes care of building everything, not tsc.

@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @default(cuid())
+  email String @unique
+
+  firstName String
+  lastName  String
+
+  orders Order[]
+}
+
+model Order {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  cupcakes      Cupcake[]
+  cupcakesCount Int
+  totalPrice    Int
+  status        OrderStatus
+}
+
+model Cupcake {
+  id String @id @default(cuid())
+
+  caseColor    CaseColor    @default(LIGHT)
+  flavor       Flavor       @default(VANILLA)
+  color        Color        @default(MATCH_FLAVOR)
+  icingTexture IcingTexture @default(ROUND)
+  icingColor   IcingColor   @default(MATCH_FLAVOR)
+  icingFlavor  IcingFlavor  @default(VANILLA)
+  toppings     Topping[]
+  price        Int
+  Order        Order?       @relation(fields: [orderId], references: [id])
+  orderId      String?
+}
+
+model Topping {
+  id        String         @id @default(cuid())
+  type      ToppingFlavor
+  color     Color?
+  amount    ToppingAmount?
+  cupcake   Cupcake?       @relation(fields: [cupcakeId], references: [id])
+  cupcakeId String?
+  price     Int?
+}
+
+enum IcingTexture {
+  ROUND
+  SWIRL
+}
+
+enum Flavor {
+  CHOCOLATE
+  VANILLA
+  STRAWBERRY
+  RASPBERRY
+  RED_VELVET
+  LEMON
+  CARROT
+  RUM
+}
+
+enum IcingFlavor {
+  CREAM_CHEESE
+  BUTTERCREAM
+  CHOCOLATE
+  VANILLA
+  STRAWBERRY
+  RASPBERRY
+  RED_VELVET
+  LEMON
+  CARROT
+  RUM
+}
+
+enum IcingColor {
+  RED
+  ORANGE
+  YELLOW
+  GREEN
+  TEAL
+  BLUE
+  PURPLE
+  PINK
+  BROWN
+  BLACK
+  WHITE
+  MATCH_FLAVOR
+}
+
+enum Color {
+  RED
+  ORANGE
+  YELLOW
+  GREEN
+  TEAL
+  BLUE
+  PURPLE
+  PINK
+  BROWN
+  BLACK
+  WHITE
+  RAINBOW
+  MATCH_FLAVOR
+}
+
+enum CaseColor {
+  LIGHT
+  DARK
+}
+
+enum ToppingFlavor {
+  CHERRY
+  SPRINKLES
+  CHOCOLATE_CHIPS
+  CHOCOLATE_BARS
+  CHOCOLATE_FLAKES
+  HEARTS
+}
+
+enum ToppingAmount {
+  ONE
+  LOTS
+}
+
+enum OrderStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="140" preserveAspectRatio="none" version="1.2" viewBox="0 0 720 140">
+  <linearGradient id="a">
+    <stop offset="50%" stop-color="#f4dede"/>
+    <stop offset="95%" stop-color="transparent"/>
+  </linearGradient>
+  <path fill="url(#a)" d="M0 53S6 9 73 9c83 1 128 66 263 75 169 11 241-53 319-57 39-2 65 36 65 36v77H0z" opacity=".5"/>
+</svg>

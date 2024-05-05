@@ -1,0 +1,83 @@
+.heart {
+    fill: $pink-light;
+    stroke: $scarlet;
+    stroke-miterlimit: 100
+}
+
+.heart-vanilla,
+.heart-white,
+.heart-cream_cheese,
+.heart-buttercream,
+.heart-rainbow:nth-child(1),
+.heart-rainbow:nth-child(14) {
+    fill: $white;
+}
+
+.heart-strawberry,
+.heart-red,
+.heart-rainbow:nth-child(2),
+.heart-rainbow:nth-child(15) {
+    fill: $red;
+}
+
+.heart-blue,
+.heart-rainbow:nth-child(3),
+.heart-rainbow:nth-child(16) {
+    fill: $blue;
+}
+
+.heart-lemon,
+.heart-yellow,
+.heart-rainbow:nth-child(4) {
+    fill: $yellow;
+}
+
+.heart-orange,
+.heart-carrot,
+.heart-rainbow:nth-child(5) {
+    fill: $orange;
+}
+
+.heart-green,
+.heart-rainbow:nth-child(6) {
+    fill: $green;
+}
+
+.heart-purple,
+.heart-rainbow:nth-child(7) {
+    fill: $purple-light;
+}
+
+.heart-teal,
+.heart-rainbow:nth-child(8) {
+    fill: $teal;
+}
+
+.heart-raspberry,
+.heart-rainbow:nth-child(9) {
+    fill: $cherry;
+}
+
+.heart-pink,
+.heart-rainbow:nth-child(10) {
+    fill: $pink;
+}
+
+.heart-chocolate,
+.heart-rainbow:nth-child(11) {
+    fill: $chocolate;
+}
+
+.heart-red_velvet,
+.heart-rainbow:nth-child(12) {
+    fill: $red-velvet;
+}
+
+.heart-rum,
+.heart-rainbow:nth-child(13) {
+    fill: $chocolate-light;
+}
+
+.heart-black {
+    fill: $black;
+}

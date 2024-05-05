@@ -13,4 +13,7 @@ dev:
 start:
 	npm run start
 
-all: set-node install build dev
+generate-types:
+	npx prisma generate
+
+all: set-node install generate-types build dev

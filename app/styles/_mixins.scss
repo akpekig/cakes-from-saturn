@@ -1,17 +1,15 @@
 @use 'sass:map';
 
-
 $desktop: 1024px;
 
-
 @mixin mobile {
-    @media (max-width: calc($desktop - 1px)) {
-        @content;
-    }
+  @media (max-width: calc($desktop - 1px)) {
+    @content;
+  }
 }
 
 @mixin desktop {
-    @media (min-width: $desktop) {
-        @content;
-    }
+  @media (min-width: $desktop) {
+    @content;
+  }
 }

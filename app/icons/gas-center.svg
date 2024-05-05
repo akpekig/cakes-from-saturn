@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="256" preserveAspectRatio="none" version="1.2" viewBox="0 0 480 256">
+  <linearGradient id="b">
+    <stop offset="15%" stop-color="transparent"/>
+    <stop offset="95%" stop-color="#f4dede"/>
+  </linearGradient>
+  <path fill="url(#b)" d="M51 116c0-1 102-77 243-80 72-2 83 29 151 13l35-7v112s-15-10-30-9c-71 6-66 49-139 67-137 35-259-6-259-6S4 190 1 179c-5-18 50-63 50-63z" opacity="0.5" />
+</svg>

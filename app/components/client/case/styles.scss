@@ -1,0 +1,24 @@
+.paper-light {
+    fill: $pink-light;
+}
+
+.paper-dark {
+    fill: $purple;
+}
+
+.paper-outline {
+    fill: none;
+    stroke: $scarlet;
+    stroke-miterlimit: 100;
+}
+
+.paper-shadow {
+    mix-blend-mode: color-burn;
+    opacity: 0.3;
+    fill: $purple-dark;
+}
+
+.paper-folds {
+    fill: $scarlet;
+    mix-blend-mode: multiply;
+}

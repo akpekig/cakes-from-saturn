@@ -1,21 +1,13 @@
 import { fakeDatabase } from '@api/data'
 import Cupcake, { links as cupcakeLinks } from '@app/components/client/cupcake'
 import StarSvg from '@app/icons/star.svg'
-import i18next from '@app/modules/i18next.server'
 import styles from '@app/styles/index.scss?url'
-import { $Enums, Prisma } from '@prisma/client'
+import { snakeCase } from '@app/utils/string'
+import { Prisma } from '@prisma/client'
 import { LinksFunction, type LoaderFunctionArgs, json } from '@remix-run/node'
-import {
-  Link,
-  Links,
-  Meta,
-  type MetaFunction,
-  Outlet,
-  Scripts,
-  useLoaderData,
-} from '@remix-run/react'
+import { Link, type MetaFunction, useLoaderData } from '@remix-run/react'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useChangeLanguage } from 'remix-i18next/react'
 
 const payload = {
   include: {
@@ -35,7 +27,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
     '2',
   )) as Prisma.CupcakeGetPayload<typeof payload>
 
-  return json({ heroCupcakeLeft, heroCupcakeRight })
+  const menuCupcakes =
+    (await fakeDatabase.getCupcakes()) as Prisma.CupcakeGetPayload<
+      typeof payload
+    >[]
+
+  return json({ heroCupcakeLeft, heroCupcakeRight, menuCupcakes })
 }
 
 export const links: LinksFunction = () => [
@@ -55,18 +52,57 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   const { t } = useTranslation()
-  const { heroCupcakeLeft, heroCupcakeRight } = useLoaderData<typeof loader>()
+  const { heroCupcakeLeft, heroCupcakeRight, menuCupcakes } =
+    useLoaderData<typeof loader>()
+  const logoStarRef = useRef<HTMLElement | null>(null)
+
+  const cupcakeMenu = menuCupcakes.map((cupcake, index) => {
+    const cupcakeName =
+      cupcake.flavor === 'CHOCOLATE' && cupcake.icingFlavor === 'CHOCOLATE'
+        ? t(`menu.doubleChocolate`)
+        : t(`menu.${cupcake.flavor.toString().toLowerCase()}`)
+
+    return (
+      <li
+        key={`menu-cupcake-${snakeCase(cupcakeName)}`}
+        className="index-menu-item"
+      >
+        <h3 aria-label={cupcakeName}>{cupcakeName}</h3>
+        <Cupcake {...cupcake} className="index-menu-cupcake" translation />
+      </li>
+    )
+  })
+
+  const handleLogoInteraction = () => {
+    if (logoStarRef.current) {
+      const newLogoStar = logoStarRef.current.cloneNode(true) as HTMLElement
+      logoStarRef.current.replaceWith(newLogoStar)
+      logoStarRef.current = newLogoStar
+    }
+  }
 
   return (
     <div className="page">
+      <dl></dl>
       <h1 id="pageHeading" className="index-heading" aria-label={t('brand')}>
-        <span aria-hidden="true">{t('brand')}</span>
-        <StarSvg id="pageHeadingStar" aria-hidden="true" />
+        <Link
+          id="pageHeadingLink"
+          to="/"
+          onMouseEnter={handleLogoInteraction}
+          onFocus={handleLogoInteraction}
+        >
+          <span aria-hidden="true">{t('brand')}</span>
+        </Link>
+        <StarSvg ref={logoStarRef} id="pageHeadingStar" aria-hidden="true" />
       </h1>
       <header className="index-section" id="indexHero">
         <div className="index-hero-text">
           <p>{t('index.hero')}</p>
-          <Link className="button" to="/#" aria-label={t('index.hero.button')}>
+          <Link
+            className="button"
+            to="/#indexMenu"
+            aria-label={t('index.hero.button')}
+          >
             {t('index.hero.button')}
           </Link>
         </div>
@@ -80,6 +116,9 @@ export default function Index() {
           <h2 className="index-heading" id="menuHeading">
             {t('index.menu')}
           </h2>
+          <ul className="index-menu" aria-labelledby="menuHeading">
+            {cupcakeMenu}
+          </ul>
         </section>
       </main>
     </div>

@@ -5,6 +5,7 @@ import Toppings, {
 } from '@app/components/client/toppings'
 import { $Enums, Prisma } from '@prisma/client'
 import type { LinksFunction } from '@remix-run/node'
+import { useTranslation } from 'react-i18next'
 
 import styles from './styles.scss?url'
 
@@ -22,6 +23,7 @@ interface CupcakeProps
   }> {
   className?: string
   toppingsClassName?: string
+  translation?: { [key: string]: TCupcakeTranslation } | boolean
 }
 
 export const links: LinksFunction = () => [
@@ -31,7 +33,13 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
 ]
 
+/**
+ * A cupcake component that displays a cupcake with a customizable flavor, color, icing, toppings, and case color.
+ * @param props Cupcake flavor, color, icing, toppings, and translation
+ * @returns SVG element representing a cupcake
+ */
 export default function Cupcake(props: CupcakeProps) {
+  const { t } = useTranslation('cupcake')
   const cakeColor =
     props.color === $Enums.Color.MATCH_FLAVOR ? props.flavor : props.color
   const cakeColorClassName = `cake cake-${cakeColor.toLowerCase()}`
@@ -46,26 +54,81 @@ export default function Cupcake(props: CupcakeProps) {
   }
 
   return (
-    <svg
-      version="1.2"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 640 640"
-      width="720"
-      height="720"
-      className={props.className}
-    >
-      <linearGradient id="rainbowGradient">
-        <stop offset="10%" />
-        <stop offset="50%" />
-        <stop offset="90%" />
-      </linearGradient>
-      <path
-        className={cakeColorClassName}
-        d="m100 381.5l0.3-0.1c0 0 84.5-48.9 259.9-48.9 175.4 0 260.4 49 260.4 49z"
-      />
-      <Icing {...icingProps} />
-      {props.toppings && <Toppings {...toppingsProps} />}
-      <Case caseColor={props.caseColor} />
-    </svg>
+    <>
+      <svg
+        version="1.2"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 640 640"
+        width="720"
+        height="720"
+        className={props.className}
+        role={props.translation ? 'img' : 'presentation'}
+      >
+        {props.translation && (
+          <title id={`cupcakeTitle-${props.id}`}>{t('cupcake')}</title>
+        )}
+        <linearGradient id="rainbowGradient">
+          <stop offset="10%" />
+          <stop offset="50%" />
+          <stop offset="90%" />
+        </linearGradient>
+        <path
+          className={cakeColorClassName}
+          d="m100 381.5l0.3-0.1c0 0 84.5-48.9 259.9-48.9 175.4 0 260.4 49 260.4 49z"
+        />
+        <Icing {...icingProps} />
+        {props.toppings && <Toppings {...toppingsProps} />}
+        <Case caseColor={props.caseColor} />
+      </svg>
+      {props.translation && (
+        <dl className="visually-hidden" aria-label={t('cupcake.selection')}>
+          <dt>{t('cupcake.cake')}</dt>
+          <dd>
+            {t(`cupcake.flavor.${props.flavor.toString().toLowerCase()}`)}
+          </dd>
+          <dt>{t('cupcake.cake.color')}</dt>
+          <dt>{t(`cupcake.color.${props.color.toString().toLowerCase()}`)}</dt>
+          <dt>{t('cupcake.icing')}</dt>
+          <dd>
+            {t(`cupcake.flavor.${props.icingFlavor.toString().toLowerCase()}`)}
+          </dd>
+          <dt>{t('cupcake.icing.color')}</dt>
+          <dd>
+            {t(`cupcake.color.${props.icingColor.toString().toLowerCase()}`)}
+          </dd>
+          <dt>{t('cupcake.icing.texture')}</dt>
+          <dd>
+            {t(
+              `cupcake.icing.texture.${props.icingTexture.toString().toLowerCase()}`,
+            )}
+          </dd>
+          <dt>{t('cupcake.topping')}</dt>
+          {!!props.toppings &&
+            props.toppings.map((topping, index) => (
+              <div key={`cupcake-${props.id}-topping-${topping.id}-${index}`}>
+                <dd>
+                  {t(
+                    `cupcake.topping.${topping.type.toString().toLowerCase()}`,
+                  )}
+                </dd>
+                {topping.amount && (
+                  <dd>
+                    {t(
+                      `cupcake.topping.${topping.amount.toString().toLowerCase()}`,
+                    )}
+                  </dd>
+                )}
+                {topping.color && (
+                  <dd>
+                    {t(
+                      `cupcake.color.${topping.color.toString().toLowerCase()}`,
+                    )}
+                  </dd>
+                )}
+              </div>
+            ))}
+        </dl>
+      )}
+    </>
   )
 }

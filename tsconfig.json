@@ -1,6 +1,6 @@
 {
   "include": [
-    "modules.d.ts",
+    "global.d.ts",
     "vite-env.d.ts",
     "remix.env.d.ts",
     "**/*.ts",

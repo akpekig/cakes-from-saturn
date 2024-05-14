@@ -30,7 +30,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export let handle = {
-  i18n: 'common',
+  i18n: ['common', 'cupcake'],
 }
 
 export function links() {

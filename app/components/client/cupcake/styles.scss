@@ -1,78 +1,78 @@
 .cake {
-    fill: #ff00ff;
-    stroke: #ae4b47;
-    stroke-miterlimit: 100
+  fill: #ff00ff;
+  stroke: #ae4b47;
+  stroke-miterlimit: 100;
 }
 
 .cake-vanilla {
-    fill: $white;
+  fill: $white;
 }
 
 .cake-strawberry,
 .cake-red {
-    fill: $red;
+  fill: $red;
 }
 
 .cake-blue {
-    fill: $blue;
+  fill: $blue;
 }
 
 .cake-lemon,
 .cake-yellow {
-    fill: $yellow;
+  fill: $yellow;
 }
 
 .cake-orange,
 .cake-carrot {
-    fill: $orange;
+  fill: $orange;
 }
 
 .cake-green {
-    fill: $green;
+  fill: $green;
 }
 
 .cake-purple {
-    fill: $purple-light;
+  fill: $purple-light;
 }
 
 .cake-teal {
-    fill: $teal;
+  fill: $teal;
 }
 
 .cake-raspberry {
-    fill: $cherry;
+  fill: $cherry;
 }
 
 .cake-pink {
-    fill: $pink;
+  fill: $pink;
 }
 
 .cake-chocolate {
-    fill: $chocolate;
+  fill: $chocolate;
 }
 
 .cake-red_velvet {
-    fill: $red-velvet;
+  fill: $red-velvet;
 }
 
 .cake-rum {
-    fill: $chocolate-light;
+  fill: $chocolate-light;
 }
 
 .cake-rainbow {
-    fill: url(#rainbowGradient);
+  fill: url(#rainbowGradient);
 }
 
 #rainbowGradient {
-    stop:nth-child(1) {
-        stop-color: $red;
-    }
+  stop:nth-child(1) {
+    stop-color: $red;
+  }
 
-    stop:nth-child(2) {
-        stop-color: $teal;
-    }
+  stop:nth-child(2) {
+    stop-color: $teal;
+  }
 
-    stop:nth-child(3) {
-        stop-color: $purple-light;
-    }
+  stop:nth-child(3) {
+    stop-color: $purple-light;
+  }
 }

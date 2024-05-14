@@ -1,12 +1,11 @@
-import i18next from '@app/modules/i18next.server'
-import appStyles from '@app/styles/app.scss?url'
 import GasBlockSvg from '@app/icons/gas-block.svg'
 import GasCenterSvg from '@app/icons/gas-center.svg'
+import i18next from '@app/modules/i18next.server'
+import appStyles from '@app/styles/app.scss?url'
 import { type LoaderFunctionArgs, json } from '@remix-run/node'
 import { Links, Meta, Outlet, Scripts, useLoaderData } from '@remix-run/react'
 import { useTranslation } from 'react-i18next'
 import { useChangeLanguage } from 'remix-i18next/react'
-
 
 export async function loader({ request }: LoaderFunctionArgs) {
   let locale = await i18next.getLocale(request)
@@ -42,7 +41,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div className='screen'>
+        <div className="screen">
           <div className="background" aria-hidden="true">
             <span className="stars" />
             <GasBlockSvg className="top" />

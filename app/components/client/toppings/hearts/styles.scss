@@ -1,7 +1,7 @@
 .heart {
-    fill: $pink-light;
-    stroke: $scarlet;
-    stroke-miterlimit: 100
+  fill: $pink-light;
+  stroke: $scarlet;
+  stroke-miterlimit: 100;
 }
 
 .heart-vanilla,
@@ -10,74 +10,74 @@
 .heart-buttercream,
 .heart-rainbow:nth-child(1),
 .heart-rainbow:nth-child(14) {
-    fill: $white;
+  fill: $white;
 }
 
 .heart-strawberry,
 .heart-red,
 .heart-rainbow:nth-child(2),
 .heart-rainbow:nth-child(15) {
-    fill: $red;
+  fill: $red;
 }
 
 .heart-blue,
 .heart-rainbow:nth-child(3),
 .heart-rainbow:nth-child(16) {
-    fill: $blue;
+  fill: $blue;
 }
 
 .heart-lemon,
 .heart-yellow,
 .heart-rainbow:nth-child(4) {
-    fill: $yellow;
+  fill: $yellow;
 }
 
 .heart-orange,
 .heart-carrot,
 .heart-rainbow:nth-child(5) {
-    fill: $orange;
+  fill: $orange;
 }
 
 .heart-green,
 .heart-rainbow:nth-child(6) {
-    fill: $green;
+  fill: $green;
 }
 
 .heart-purple,
 .heart-rainbow:nth-child(7) {
-    fill: $purple-light;
+  fill: $purple-light;
 }
 
 .heart-teal,
 .heart-rainbow:nth-child(8) {
-    fill: $teal;
+  fill: $teal;
 }
 
 .heart-raspberry,
 .heart-rainbow:nth-child(9) {
-    fill: $cherry;
+  fill: $cherry;
 }
 
 .heart-pink,
 .heart-rainbow:nth-child(10) {
-    fill: $pink;
+  fill: $pink;
 }
 
 .heart-chocolate,
 .heart-rainbow:nth-child(11) {
-    fill: $chocolate;
+  fill: $chocolate;
 }
 
 .heart-red_velvet,
 .heart-rainbow:nth-child(12) {
-    fill: $red-velvet;
+  fill: $red-velvet;
 }
 
 .heart-rum,
 .heart-rainbow:nth-child(13) {
-    fill: $chocolate-light;
+  fill: $chocolate-light;
 }
 
 .heart-black {
-    fill: $black;
+  fill: $black;
 }

@@ -1,15 +1,27 @@
-#pageHeading {
-  position: relative;
+.index-heading {
   display: block;
   margin: 0 auto;
-  padding: 6.25vw 0;
   color: $scarlet;
-  font-size: 6.25vw;
-  font-weight: 900;
 
-  @include desktop {
-    padding: 4rem 0;
-    font-size: 4rem;
+  &#pageHeading {
+    position: relative;
+    padding: 6.25vw 0;
+    font-size: 6.25vw;
+    font-weight: 700;
+
+    @include desktop {
+      padding: 4rem 0;
+      font-size: 4rem;
+    }
+  }
+
+  &#menuHeading {
+    font-size: 2rem;
+    font-weight: 500;
+
+    @include desktop {
+      font-size: 3.25rem;
+    }
   }
 }
 
@@ -32,20 +44,24 @@
   }
 }
 
-.index-hero {
+.index-section {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   padding: 0 6.25vw;
-  color: $pink-light;
-  font-weight: 500;
-  line-height: 2;
+  margin-bottom: 5rem;
 
-  @include desktop {
-    flex-flow: row nowrap;
-    align-items: start;
-    padding: 0 13.75vw;
-    font-size: 1.25rem;
+  &#indexHero {
+    color: $pink-light;
+    font-weight: 500;
+    line-height: 2;
+
+    @include desktop {
+      flex-flow: row nowrap;
+      align-items: start;
+      padding: 0 13.75vw;
+      font-size: 1.25rem;
+    }
   }
 }
 
@@ -53,6 +69,7 @@
   text-align: center;
 
   @include desktop {
+    width: 100%;
     padding: 0 1.25rem;
   }
 }
@@ -66,16 +83,35 @@
 .index-hero-cupcake-right {
   width: 250px;
   height: 250px;
+  margin-inline: -4rem;
+
+  @include desktop {
+    width: 75%;
+    height: 75%;
+    margin-top: -4rem;
+  }
 }
 
 .index-hero-cupcake-left {
-  margin-right: -2rem;
   opacity: 0.75;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: float-cupcake-left 3s ease-in-out infinite;
+  }
 }
 
 .index-hero-cupcake-right {
-  margin-left: -6rem;
   transform: rotate(-30deg);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: float-cupcake-right 3s ease-in-out infinite;
+  }
+}
+
+.index-menu {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
 }
 
 @keyframes rotate-stars {
@@ -89,5 +125,33 @@
 
   100% {
     transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes float-cupcake-left {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-cupcake-right {
+  0% {
+    transform: translateY(0) rotate(-30deg);
+  }
+
+  50% {
+    transform: translateY(-0.5rem) rotate(-27deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-30deg);
   }
 }

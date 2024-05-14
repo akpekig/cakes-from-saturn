@@ -1,4 +1,5 @@
 import i18n from '@app/config/i18n'
+import { userLocale } from '@app/cookie.server'
 import Backend from 'i18next-fs-backend'
 import { resolve } from 'node:path'
 import { RemixI18Next } from 'remix-i18next/server'
@@ -7,6 +8,7 @@ let i18next = new RemixI18Next({
   detection: {
     supportedLanguages: i18n.supportedLngs,
     fallbackLanguage: i18n.fallbackLng,
+    cookie: userLocale,
   },
   // This is the configuration for i18next used
   // when translating messages server-side only

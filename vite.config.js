@@ -12,6 +12,9 @@ const remixConfig = {
 
 const svgrConfig = {
   include: './app/icons/**/*.svg',
+  svgrOptions: {
+    ref: true,
+  }
 }
 
 const cssConfig = {

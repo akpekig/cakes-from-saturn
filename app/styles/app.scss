@@ -19,6 +19,39 @@ html {
   background-color: $purple-dark;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  user-select: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .page {
   display: flex;
   flex-flow: column nowrap;
@@ -136,9 +169,70 @@ html {
   text-transform: uppercase;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background: $pink-light;
     color: $scarlet;
+  }
+}
+
+.language-select {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+
+#languageSelectLabel {
+  &:hover,
+  &:focus-visible {
+    .language-select-icon {
+      color: $scarlet;
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition: color 0.5s;
+      }
+    }
+  }
+}
+
+.language-select-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.language-select-list {
+  position: absolute;
+  bottom: 4rem;
+  right: 1rem;
+  display: flex;
+  width: 10rem;
+  flex-flow: column nowrap;
+  align-items: center;
+  border-radius: 5px;
+  background: $pink-light;
+  overflow: hidden;
+
+  @include desktop {
+    width: 20rem;
+  }
+}
+
+.language-select-option {
+  cursor: pointer;
+  pointer-events: all;
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  color: $scarlet;
+  text-align: center;
+  text-transform: capitalize;
+  user-select: none;
+
+  &:hover,
+  &:focus-visible,
+  &.active {
+    background: $scarlet;
+    color: $pink-light;
   }
 }
 

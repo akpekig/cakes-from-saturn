@@ -63,6 +63,13 @@
       font-size: 1.25rem;
     }
   }
+
+  &#indexMenu {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100vh;
+  }
 }
 
 .index-hero-text {
@@ -110,11 +117,35 @@
 
 .index-menu {
   display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
+  flex-flow: row wrap;
+}
+
+.index-menu-item {
+  h3 {
+    text-transform: uppercase;
+  }
+}
+
+.index-menu-cupcake {
+  width: 72px;
+  height: 72px;
 }
 
 @keyframes rotate-stars {
+  0% {
+    transform: rotate(0deg) scale(0);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(3);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes reflow-rotate-stars {
   0% {
     transform: rotate(0deg) scale(0);
   }

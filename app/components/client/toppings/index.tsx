@@ -1,3 +1,4 @@
+import { cyrb53 } from '@app/utils/crypto'
 import { Prisma } from '@prisma/client'
 import { type LinksFunction } from '@remix-run/node'
 import { Suspense, lazy, useMemo } from 'react'
@@ -68,10 +69,11 @@ export default function Toppings({ toppings, className }: ToppingsProps) {
     return sortedToppings.map((topping, index) => {
       const type = topping.type as ToppingKeys
       const Component = toppingMap[type]
+      const key = cyrb53(`${type}-${index}-${Date.now().toString()}`)
 
       if (toppingsWithAmount.includes(type)) {
         return (
-          <Suspense key={index} fallback={null}>
+          <Suspense key={key} fallback={null}>
             <Component amount={topping.amount ?? 'ONE'} />
           </Suspense>
         )
@@ -79,7 +81,7 @@ export default function Toppings({ toppings, className }: ToppingsProps) {
 
       if (toppingsWithColor.includes(type)) {
         return (
-          <Suspense key={index} fallback={null}>
+          <Suspense key={key} fallback={null}>
             <Component color={topping.color ?? 'RAINBOW'} />
           </Suspense>
         )
@@ -87,7 +89,7 @@ export default function Toppings({ toppings, className }: ToppingsProps) {
 
       if (toppingsWithChocolate.includes(type)) {
         return (
-          <Suspense key={index} fallback={null}>
+          <Suspense key={key} fallback={null}>
             <Component />
           </Suspense>
         )

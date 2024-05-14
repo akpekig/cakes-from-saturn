@@ -1,7 +1,18 @@
 .icing,
-.icing-shadow {
+.icing-shadow,
+#simple-icing path {
   stroke: $scarlet;
   stroke-miterlimit: 100;
+}
+
+#simple-icing {
+  .icing-raspberry,
+  .icing-strawberry,
+  .icing-red,
+  .icing-red_velvet,
+  .icing-pink {
+    stroke: $purple;
+  }
 }
 
 .icing {

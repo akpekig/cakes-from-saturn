@@ -69,13 +69,11 @@ export default function App() {
         hiddenClassName,
         languageSelectListClassName,
       )
-      languageSelectList.focus()
     } else {
       languageSelectList.classList.replace(
         languageSelectListClassName,
         hiddenClassName,
       )
-      languageSelectLabel.focus()
     }
   }
 
@@ -135,6 +133,7 @@ export default function App() {
                   className={`language-select-option ${language === locale ? 'active' : ''}`}
                   to={`?lng=${language}`}
                   role="option"
+                  aria-selected={language === locale}
                 >
                   {languageDisplay.of(language)}
                 </Link>

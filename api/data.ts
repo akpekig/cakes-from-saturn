@@ -157,6 +157,8 @@ const fakeOrders: Prisma.OrderGetPayload<{
   }
 }>[] = []
 
+const fakeMessages: { [key: string]: string }[] = []
+
 const fakeDatabase = {
   async getCupcakes() {
     return fakeCupcakes
@@ -253,6 +255,24 @@ const fakeDatabase = {
     }
     order.cupcakes.push(cupcake)
     return order
+  },
+
+  async getMessages() {
+    return fakeMessages
+  },
+
+  async createMessage(message: { [key: string]: string }) {
+    fakeMessages.push(message)
+    return message
+  },
+
+  async deleteMessage(id: string) {
+    const index = fakeMessages.findIndex((message) => message.id === id)
+    if (index === -1) {
+      return null
+    }
+    fakeMessages.splice(index, 1)
+    return id
   },
 }
 

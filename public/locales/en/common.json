@@ -4,7 +4,7 @@
   "nav.catalog": "Menu",
   "nav.custom": "Custom cakes",
   "nav.contact": "Contact us",
-  "index.hero": "Cakes from Saturn always offers delicious and fresh cupcakes with delivery. The variety of tastes and assortment will give your family an unforgettable experience and lift your spirits for the whole day.",
+  "index.hero": "Cakes from Saturn always offers delicious and fresh cupcakes with delivery. The variety of tastes and assortment provides an unforgettable experience and lift spirits for the whole day.",
   "index.hero.button": "See the menu",
   "index.menu": "Menu",
   "index.menu.button": "Order a box",
@@ -24,6 +24,8 @@
   "index.contact.form.lastName": "Last name",
   "index.contact.form.email": "Email",
   "index.contact.form.phone": "Phone",
+  "index.contact.form.message": "Message",
   "index.contact.form.consent": "I agree to the processing of my personal data",
-  "index.contact.form.button": "Send"
+  "index.contact.form.button": "Send",
+  "index.contact.form.success": "Your message has been sent successfully!"
 }

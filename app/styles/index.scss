@@ -18,14 +18,14 @@
       font-size: 4rem;
     }
   }
+}
 
-  &#menuHeading {
-    font-size: 2rem;
-    font-weight: 500;
+.index-heading-small {
+  font-size: 2rem;
+  font-weight: 500;
 
-    @include desktop {
-      font-size: 3.25rem;
-    }
+  @include desktop {
+    font-size: 3.25rem;
   }
 }
 
@@ -55,6 +55,11 @@
   padding: 0 6.25vw;
   margin-bottom: 5rem;
 
+  @include desktop {
+    padding: 0 13.75vw;
+    font-size: 1.25rem;
+  }
+
   &#indexHero {
     margin-bottom: 20vh;
     color: $pink-light;
@@ -64,8 +69,6 @@
     @include desktop {
       flex-flow: row nowrap;
       align-items: start;
-      padding: 0 13.75vw;
-      font-size: 1.25rem;
     }
   }
 
@@ -74,11 +77,10 @@
     flex-flow: column nowrap;
     width: 100%;
     height: 85vh;
+  }
 
-    @include desktop {
-      padding: 0 13.75vw;
-      font-size: 1.25rem;
-    }
+  &#indexContact {
+    height: 85vh;
   }
 }
 
@@ -96,8 +98,8 @@
   flex-flow: row nowrap;
 }
 
-.index-hero-cupcake-left,
-.index-hero-cupcake-right {
+.index-hero-cupcake,
+.index-hero-cupcake {
   width: 250px;
   height: 250px;
   margin-inline: -4rem;
@@ -107,21 +109,21 @@
     height: 75%;
     margin-top: -4rem;
   }
-}
 
-.index-hero-cupcake-left {
-  opacity: 0.75;
+  &:first-child {
+    opacity: 0.75;
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: float-cupcake-left 3s ease-in-out infinite;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: float-cupcake-left 3s ease-in-out infinite;
+    }
   }
-}
 
-.index-hero-cupcake-right {
-  transform: rotate(-30deg);
+  &:last-child {
+    transform: rotate(-30deg);
 
-  @media (prefers-reduced-motion: no-preference) {
-    animation: float-cupcake-right 3s ease-in-out infinite;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: float-cupcake-right 3s ease-in-out infinite;
+    }
   }
 }
 
@@ -155,6 +157,7 @@
   h3 {
     width: 100%;
     font-size: 1rem;
+    line-height: 1.5;
     text-align: center;
     text-transform: uppercase;
     color: $pink-light;
@@ -192,6 +195,147 @@
     text-align: center;
     white-space: pre-wrap;
     word-break: keep-all;
+  }
+}
+
+.index-contact-content {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  color: $pink-light;
+
+  @include desktop {
+    flex-flow: row nowrap;
+    align-items: start;
+  }
+}
+
+.index-contact-form {
+  flex: 1 1 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+
+  @include desktop {
+    flex: 0 0 33%;
+  }
+
+  .button {
+    align-self: center;
+  }
+}
+
+.index-contact-form-loading {
+  cursor: wait;
+  opacity: 0.5;
+
+  .index-contact-form-field {
+    pointer-events: none;
+  }
+
+  .button {
+    cursor: inherit;
+  }
+}
+
+.index-contact-form-field {
+  position: relative;
+  text-align: center;
+
+  @include desktop {
+    text-align: left;
+  }
+
+  .index-contact-form-field-textarea,
+  .index-contact-form-field-text-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid $pink-light;
+    border-radius: 5px;
+    background: $pink-light;
+    color: $scarlet;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.25s;
+
+    &:focus ~ .index-contact-form-field-floating-label {
+      top: -1.25rem;
+      left: 0.5rem;
+      font-size: 0.75rem;
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition:
+          top 0.25s,
+          font-size 0.25s;
+      }
+    }
+
+    &:not(:placeholder-shown) ~ .index-contact-form-field-floating-label {
+      @include visually-hidden;
+    }
+  }
+
+  .index-contact-form-field-textarea {
+    height: 5rem;
+  }
+
+  .index-contact-form-field-checkbox {
+    margin: 0 0.5rem 0 0;
+  }
+}
+
+.index-contact-form-field-floating-label {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.5rem;
+  color: $scarlet;
+}
+
+.index-contact-text {
+  flex: 1 1 50%;
+  line-height: 2;
+  text-align: center;
+
+  @include desktop {
+    padding: 0 4rem;
+    font-size: 1.25rem;
+    text-align: left;
+  }
+}
+
+.index-contact-highlights-intro {
+  margin: 0;
+  padding: 0 0 2rem;
+}
+
+.index-contact-highlights-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  margin: 0 0 2rem 2rem;
+
+  @include desktop {
+    margin: 0 0 2rem 0;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 100%;
+    background: $scarlet;
+    opacity: 0.5;
+    z-index: -1;
+  }
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1.75rem;
   }
 }
 

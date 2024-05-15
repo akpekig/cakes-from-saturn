@@ -23,7 +23,7 @@ interface CupcakeProps
   }> {
   className?: string
   toppingsClassName?: string
-  translation?: { [key: string]: TCupcakeTranslation } | boolean
+  translate?: boolean
 }
 
 export const links: LinksFunction = () => [
@@ -35,7 +35,7 @@ export const links: LinksFunction = () => [
 
 /**
  * A cupcake component that displays a cupcake with a customizable flavor, color, icing, toppings, and case color.
- * @param props Cupcake flavor, color, icing, toppings, and translation
+ * @param props Cupcake flavor, color, icing, toppings, and optional translate flag
  * @returns SVG element representing a cupcake
  */
 export default function Cupcake(props: CupcakeProps) {
@@ -62,9 +62,9 @@ export default function Cupcake(props: CupcakeProps) {
         width="720"
         height="720"
         className={props.className}
-        role={props.translation ? 'img' : 'presentation'}
+        role={props.translate ? 'img' : 'presentation'}
       >
-        {props.translation && (
+        {props.translate && (
           <title id={`cupcakeTitle-${props.id}`}>{t('cupcake')}</title>
         )}
         <linearGradient id="rainbowGradient">
@@ -80,7 +80,7 @@ export default function Cupcake(props: CupcakeProps) {
         {props.toppings && <Toppings {...toppingsProps} />}
         <Case caseColor={props.caseColor} />
       </svg>
-      {props.translation && (
+      {props.translate && (
         <dl className="visually-hidden" aria-label={t('cupcake.selection')}>
           <dt>{t('cupcake.cake')}</dt>
           <dd>

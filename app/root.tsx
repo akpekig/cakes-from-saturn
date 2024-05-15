@@ -12,7 +12,9 @@ import {
   Outlet,
   Scripts,
   useLoaderData,
+  useLocation,
 } from '@remix-run/react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useChangeLanguage } from 'remix-i18next/react'
 
@@ -38,6 +40,8 @@ export function links() {
     {
       rel: 'stylesheet',
       href: appStyles,
+      as: 'style',
+      crossOrigin: 'anonymous',
     },
   ]
 }
@@ -45,6 +49,7 @@ export function links() {
 export default function App() {
   const { locale, supportedLanguages } = useLoaderData<typeof loader>()
   const { i18n, t } = useTranslation()
+  const location = useLocation()
   const languageDisplay = new Intl.DisplayNames([locale], { type: 'language' })
   const languageSelectListClassName = 'language-select-list'
   const hiddenClassName = 'hidden'
@@ -75,6 +80,18 @@ export default function App() {
   }
 
   useChangeLanguage(locale)
+
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash)
+      if (el) {
+        el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    }
+  }, [location])
 
   return (
     <html lang={locale} dir={i18n.dir()}>
@@ -107,7 +124,7 @@ export default function App() {
             </button>
             <div
               id="languageSelectList"
-              className="language-select-list"
+              className="hidden"
               role="listbox"
               aria-labelledby="languageSelectLabel"
               tabIndex={-1}

@@ -116,9 +116,21 @@ export default function Index() {
           <h2 className="index-heading" id="menuHeading">
             {t('index.menu')}
           </h2>
-          <ul className="index-menu" aria-labelledby="menuHeading">
-            {cupcakeMenu}
-          </ul>
+          <div className="index-menu-content">
+            <ul className="index-menu" aria-labelledby="menuHeading">
+              {cupcakeMenu}
+            </ul>
+            <aside className="index-menu-kitchen">
+              <p>{t('index.menu.aside')}</p>
+              <Link
+                className="button"
+                to="#"
+                aria-label={t('index.menu.button')}
+              >
+                {t('index.menu.aside.button')}
+              </Link>
+            </aside>
+          </div>
         </section>
       </main>
     </div>

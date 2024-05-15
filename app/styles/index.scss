@@ -1,11 +1,15 @@
 .index-heading {
   display: block;
   margin: 0 auto;
+  padding: 6.25vw 0;
   color: $scarlet;
+
+  @include desktop {
+    padding: 4rem 0;
+  }
 
   &#pageHeading {
     position: relative;
-    padding: 6.25vw 0;
     font-size: 6.25vw;
     font-weight: 700;
 
@@ -52,6 +56,7 @@
   margin-bottom: 5rem;
 
   &#indexHero {
+    margin-bottom: 20vh;
     color: $pink-light;
     font-weight: 500;
     line-height: 2;
@@ -68,7 +73,12 @@
     display: flex;
     flex-flow: column nowrap;
     width: 100%;
-    height: 100vh;
+    height: 85vh;
+
+    @include desktop {
+      padding: 0 13.75vw;
+      font-size: 1.25rem;
+    }
   }
 }
 
@@ -115,20 +125,74 @@
   }
 }
 
+.index-menu-content {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+
+  @include desktop {
+    flex-flow: row nowrap;
+    align-items: start;
+  }
+}
+
 .index-menu {
   display: flex;
   flex-flow: row wrap;
+  flex: 1 1 50%;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
 }
 
 .index-menu-item {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 0 1 calc(33.33% - 1rem);
+  justify-content: center;
+  align-items: center;
+
   h3 {
+    width: 100%;
+    font-size: 1rem;
+    text-align: center;
     text-transform: uppercase;
+    color: $pink-light;
+    order: 1;
+    white-space: pre-wrap;
+    word-break: keep-all;
   }
 }
 
 .index-menu-cupcake {
-  width: 72px;
-  height: 72px;
+  width: 100px;
+  height: 100px;
+}
+
+.index-menu-kitchen {
+  flex: 1 1 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  p {
+    padding: 0 2rem;
+    font-size: 2rem;
+    text-align: center;
+    color: $pink-light;
+    font-style: italic;
+  }
+
+  .button {
+    display: block;
+    min-width: 15rem;
+    width: min-content;
+    text-align: center;
+    white-space: pre-wrap;
+    word-break: keep-all;
+  }
 }
 
 @keyframes rotate-stars {

@@ -210,7 +210,8 @@
   }
 }
 
-.index-contact-form {
+.index-contact-form,
+.index-contact-form-success {
   flex: 1 1 50%;
   display: flex;
   flex-flow: column nowrap;
@@ -219,6 +220,12 @@
 
   @include desktop {
     flex: 0 0 33%;
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+    line-height: 2;
   }
 
   .button {

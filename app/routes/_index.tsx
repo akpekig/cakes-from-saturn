@@ -334,6 +334,10 @@ export default function Index() {
             ) : (
               <div className="index-contact-form-success">
                 <p>{t('index.contact.form.success')}</p>
+                <span
+                  className="index-contact-form-success-star"
+                  role="presentation"
+                />
               </div>
             )}
             <aside className="index-contact-text">

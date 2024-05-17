@@ -52,15 +52,31 @@ ul {
   min-width: 100%;
   min-height: 100%;
   width: 100vw;
-  height: 100vh;
+  height: auto;
   overflow-y: auto;
   position: relative;
   z-index: 1;
+
+  main {
+    min-height: calc((38.25rem * 2) + 33.0625rem);
+
+    @include desktop {
+      min-height: calc((38.25rem * 2) + 10rem);
+      height: max-content;
+    }
+  }
+}
+
+.page-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  width: 100%;
 }
 
 .screen {
   display: flex;
-  flex-direction: column nowrap;
+  flex-flow: column nowrap;
   min-width: 100%;
   min-height: 100%;
   width: 100vw;

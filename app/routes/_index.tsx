@@ -1,5 +1,8 @@
 import { fakeDatabase } from '@api/data'
 import Cupcake, { links as cupcakeLinks } from '@app/components/client/cupcake'
+import Navigation, {
+  links as navigationLinks,
+} from '@app/components/navigation'
 import CalendarSvg from '@app/icons/calendar.svg'
 import CardSvg from '@app/icons/card.svg'
 import FillSvg from '@app/icons/fill.svg'
@@ -9,7 +12,7 @@ import { snakeCase } from '@app/utils/string'
 import { Prisma } from '@prisma/client'
 import {
   type ActionFunctionArgs,
-  LinksFunction,
+  type LinksFunction,
   type LoaderFunctionArgs,
   json,
 } from '@remix-run/node'
@@ -20,7 +23,7 @@ import {
   useFetcher,
   useLoaderData,
 } from '@remix-run/react'
-import { HTMLAttributes, useRef } from 'react'
+import { type HTMLAttributes, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const payload = {
@@ -95,6 +98,7 @@ export async function loader({ request: _ }: LoaderFunctionArgs) {
 }
 
 export const links: LinksFunction = () => [
+  ...navigationLinks(),
   ...cupcakeLinks(),
   { rel: 'stylesheet', href: styles },
 ]
@@ -260,7 +264,7 @@ export default function Index() {
 
   return (
     <div className="page">
-      <dl></dl>
+      <Navigation position="top" />
       <h1 id="pageHeading" className="index-heading" aria-label={t('brand')}>
         <Link
           id="pageHeadingLink"
@@ -277,7 +281,7 @@ export default function Index() {
           <p>{t('index.hero')}</p>
           <Link
             className="button"
-            to="/#indexMenu"
+            to="/#menu"
             aria-label={t('index.hero.button')}
           >
             <span role="presentation">{t('index.hero.button')}</span>
@@ -294,7 +298,7 @@ export default function Index() {
         </div>
       </header>
       <main>
-        <section className="index-section" id="indexMenu">
+        <section className="index-section" id="menu">
           <h2 className="index-heading index-heading-small" id="menuHeading">
             {t('index.menu')}
           </h2>
@@ -314,7 +318,7 @@ export default function Index() {
             </aside>
           </div>
         </section>
-        <section className="index-section" id="indexContact">
+        <section className="index-section" id="contact">
           <h2 className="index-heading index-heading-small" id="contactHeading">
             {t('index.contact')}
           </h2>
@@ -349,6 +353,7 @@ export default function Index() {
           </div>
         </section>
       </main>
+      <Navigation position="bottom" />
     </div>
   )
 }

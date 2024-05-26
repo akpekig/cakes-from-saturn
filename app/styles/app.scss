@@ -134,7 +134,7 @@ ul {
     background-size: 400px;
 
     @media (prefers-reduced-motion: no-preference) {
-      animation: stars-large 40s linear infinite;
+      animation: stars-large 20s linear infinite;
     }
 
     &,
@@ -155,7 +155,7 @@ ul {
       background-size: 200px;
 
       @media (prefers-reduced-motion: no-preference) {
-        animation: stars-small 20s linear infinite;
+        animation: stars-small 10s linear infinite;
       }
     }
 
@@ -164,7 +164,7 @@ ul {
       background-size: 300px;
 
       @media (prefers-reduced-motion: no-preference) {
-        animation: stars-medium 30s linear infinite;
+        animation: stars-medium 15s linear infinite;
       }
     }
   }
@@ -248,17 +248,17 @@ ul {
 
 @keyframes stars-large {
   from {
-    background-position: 0 400px;
+    background-position: 0 200px;
   }
 
   to {
-    background-position: 400px 0;
+    background-position: 200px 0;
   }
 }
 
 @keyframes stars-medium {
   from {
-    background-position: 0 300px;
+    background-position: 0 150px;
   }
 
   to {
@@ -268,10 +268,10 @@ ul {
 
 @keyframes stars-small {
   from {
-    background-position: 0 200px;
+    background-position: 0 100px;
   }
 
   to {
-    background-position: -200px 0;
+    background-position: -100px 0;
   }
 }

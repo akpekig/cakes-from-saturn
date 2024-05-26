@@ -5,6 +5,7 @@ import Toppings, {
 } from '@app/components/client/toppings'
 import { $Enums, Prisma } from '@prisma/client'
 import type { LinksFunction } from '@remix-run/node'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import styles from './styles.scss?url'
@@ -40,6 +41,7 @@ export const links: LinksFunction = () => [
  */
 export default function Cupcake(props: CupcakeProps) {
   const { t } = useTranslation('cupcake')
+  const [displayCupcake, setDisplayCupcake] = useState<boolean>(false)
   const cakeColor =
     props.color === $Enums.Color.MATCH_FLAVOR ? props.flavor : props.color
   const cakeColorClassName = `cake cake-${cakeColor.toLowerCase()}`
@@ -53,33 +55,43 @@ export default function Cupcake(props: CupcakeProps) {
     className: props.toppingsClassName,
   }
 
+  useEffect(() => {
+    setDisplayCupcake(true)
+
+    return () => {
+      setDisplayCupcake(false)
+    }
+  }, [])
+
   return (
     <>
-      <svg
-        version="1.2"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="40 0 640 640"
-        width="720"
-        height="720"
-        className={props.className}
-        role={props.translate ? 'img' : 'presentation'}
-      >
-        {props.translate && (
-          <title id={`cupcakeTitle-${props.id}`}>{t('cupcake')}</title>
-        )}
-        <linearGradient id="rainbowGradient">
-          <stop offset="10%" />
-          <stop offset="50%" />
-          <stop offset="90%" />
-        </linearGradient>
-        <path
-          className={cakeColorClassName}
-          d="m100 381.5l0.3-0.1c0 0 84.5-48.9 259.9-48.9 175.4 0 260.4 49 260.4 49z"
-        />
-        <Icing {...icingProps} />
-        {props.toppings && <Toppings {...toppingsProps} />}
-        <Case caseColor={props.caseColor} />
-      </svg>
+      {displayCupcake && (
+        <svg
+          version="1.2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="40 0 640 640"
+          width="720"
+          height="720"
+          className={props.className}
+          role={props.translate ? 'img' : 'presentation'}
+        >
+          {props.translate && (
+            <title id={`cupcakeTitle-${props.id}`}>{t('cupcake')}</title>
+          )}
+          <linearGradient id="rainbowGradient">
+            <stop offset="10%" />
+            <stop offset="50%" />
+            <stop offset="90%" />
+          </linearGradient>
+          <path
+            className={cakeColorClassName}
+            d="m100 381.5l0.3-0.1c0 0 84.5-48.9 259.9-48.9 175.4 0 260.4 49 260.4 49z"
+          />
+          <Icing {...icingProps} />
+          {props.toppings && <Toppings {...toppingsProps} />}
+          <Case caseColor={props.caseColor} />
+        </svg>
+      )}
       {props.translate && (
         <dl className="visually-hidden" aria-label={t('cupcake.selection')}>
           <dt>{t('cupcake.cake')}</dt>

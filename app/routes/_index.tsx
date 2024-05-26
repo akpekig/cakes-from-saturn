@@ -7,6 +7,7 @@ import CalendarSvg from '@app/icons/calendar.svg'
 import CardSvg from '@app/icons/card.svg'
 import FillSvg from '@app/icons/fill.svg'
 import StarSvg from '@app/icons/star.svg'
+import i18next from '@app/modules/i18next.server'
 import styles from '@app/styles/index.scss?url'
 import { snakeCase } from '@app/utils/string'
 import { Prisma } from '@prisma/client'
@@ -88,13 +89,18 @@ export async function action({ request }: ActionFunctionArgs) {
   return json({ success: true })
 }
 
-export async function loader({ request: _ }: LoaderFunctionArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
+  const t = await i18next.getFixedT(request, 'common')
+  const meta = [
+    { title: t('brand') },
+    { name: 'description', content: t('index.hero') },
+  ]
   const menuCupcakes =
     (await fakeDatabase.getCupcakes()) as Prisma.CupcakeGetPayload<
       typeof payload
     >[]
 
-  return json({ menuCupcakes })
+  return json({ meta, menuCupcakes })
 }
 
 export const links: LinksFunction = () => [
@@ -103,16 +109,9 @@ export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
 ]
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: 'Cakes From Saturn' },
-    {
-      name: 'description',
-      content: 'Customise and purchase cupcakes however you like!',
-    },
-  ]
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return data?.meta
 }
-
 export default function Index() {
   const { t } = useTranslation()
   const { menuCupcakes } = useLoaderData<typeof loader>()

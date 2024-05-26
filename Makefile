@@ -1,19 +1,23 @@
 set-node:
-	. ${NVM_DIR}/nvm.sh && nvm use || . ${NVM_DIR}/nvm.sh && nvm install
+	(. ${NVM_DIR}/nvm.sh && nvm use) || (. ${NVM_DIR}/nvm.sh && nvm install)
 
 install:
-	npm install
+	yarn install
 
 build:
-	npm run build
+	yarn build
 
 dev:
-	npm run dev
+	yarn dev
 
 start:
-	npm run start
+	yarn start
 
 generate-types:
-	npx prisma generate
+	yarn run prisma generate
 
-all: set-node install generate-types build dev
+deploy-build: generate-types build
+
+deploy-dev: generate-types dev
+
+all: set-node install generate-types dev

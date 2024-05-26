@@ -14,7 +14,7 @@ import {
   useLoaderData,
   useLocation,
 } from '@remix-run/react'
-import { useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useChangeLanguage } from 'remix-i18next/react'
 
@@ -26,7 +26,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
   return json(
     { locale, supportedLanguages },
     {
-      headers: { 'Set-Cookie': await userLocale.serialize(locale) },
+      headers: {
+        'Set-Cookie': await userLocale.serialize(locale),
+      },
     },
   )
 }
@@ -50,18 +52,18 @@ export default function App() {
   const { locale, supportedLanguages } = useLoaderData<typeof loader>()
   const { i18n, t } = useTranslation()
   const location = useLocation()
+  const [backgroundDisplay, setBackgroundDisplay] = useState<boolean>(false)
+  const languageSelectRef = useRef<HTMLDivElement | null>(null)
   const languageDisplay = new Intl.DisplayNames([locale], { type: 'language' })
   const languageSelectListClassName = 'language-select-list'
   const hiddenClassName = 'hidden'
 
   const handleOpenLanguageSelect = () => {
-    const languageSelect = document.querySelector('.language-select')
-    const languageSelectLabel = languageSelect?.querySelector(
-      '#languageSelectLabel',
-    ) as HTMLElement
-    const languageSelectList = languageSelect?.querySelector(
-      '#languageSelectList',
-    ) as HTMLElement
+    if (!languageSelectRef.current) {
+      return
+    }
+
+    const languageSelectList = languageSelectRef.current
     const isClosed = languageSelectList.classList.contains(hiddenClassName)
 
     if (isClosed) {
@@ -77,9 +79,9 @@ export default function App() {
     }
   }
 
-  useChangeLanguage(locale)
-
   useEffect(() => {
+    setBackgroundDisplay(true)
+
     if (location.hash) {
       const el = document.querySelector(location.hash)
       if (el) {
@@ -89,7 +91,13 @@ export default function App() {
         })
       }
     }
+
+    return () => {
+      setBackgroundDisplay(false)
+    }
   }, [location])
+
+  useChangeLanguage(locale)
 
   return (
     <html lang={locale} dir={i18n.dir()}>
@@ -101,12 +109,14 @@ export default function App() {
       </head>
       <body>
         <div className="screen">
-          <div className="background" aria-hidden="true">
-            <span className="stars" />
-            <GasBlockSvg className="top" />
-            <GasCenterSvg className="center" />
-            <GasBlockSvg className="bottom" />
-          </div>
+          {backgroundDisplay && (
+            <div className="background" aria-hidden="true">
+              <span className="stars" />
+              <GasBlockSvg className="top" />
+              <GasCenterSvg className="center" />
+              <GasBlockSvg className="bottom" />
+            </div>
+          )}
           <Outlet />
           <div
             className="language-select"
@@ -122,7 +132,8 @@ export default function App() {
             </button>
             <div
               id="languageSelectList"
-              className="hidden"
+              ref={languageSelectRef}
+              className={hiddenClassName}
               role="listbox"
               aria-labelledby="languageSelectLabel"
               tabIndex={-1}

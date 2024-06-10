@@ -50,7 +50,7 @@ export default function Navigation({ position }: NavigationProps) {
   }
 
   return (
-    <footer>
+    <footer className="navigation-footer">
       <nav
         className={`navigation navigation-${position}`}
         aria-label={t('nav.footer')}

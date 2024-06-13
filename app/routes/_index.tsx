@@ -164,16 +164,18 @@ export default function Index() {
       cupcake.flavor === 'CHOCOLATE' && cupcake.icingFlavor === 'CHOCOLATE'
         ? t(`menu.doubleChocolate`)
         : t(`menu.${cupcake.flavor.toString().toLowerCase()}`)
+    const cupcakeId = `menu-cupcake-${snakeCase(cupcakeName)}`
 
     return (
       <li
-        key={`menu-cupcake-${snakeCase(cupcakeName)}`}
-        className="index-menu-item"
+        key={cupcakeId}
       >
-        <h3 aria-label={cupcakeName}>
-          <span role="presentation">{cupcakeName}</span>
-        </h3>
-        <Cupcake {...cupcake} className="index-menu-cupcake" translate />
+        <Link to={`/menu/${cupcake.slug}`} className="index-menu-item" aria-labelledby={`${cupcakeId}-heading`}>
+          <h3 id={`${cupcakeId}-heading`} aria-label={cupcakeName}>
+            <span role="presentation">{cupcakeName}</span>
+          </h3>
+          <Cupcake {...cupcake} className="index-menu-cupcake" translate />
+        </Link>
       </li>
     )
   })

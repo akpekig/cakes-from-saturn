@@ -32,6 +32,9 @@ model Order {
 model Cupcake {
   id String @id @default(cuid())
 
+  pitch Copy[]
+  slug  String?
+
   caseColor    CaseColor    @default(LIGHT)
   flavor       Flavor       @default(VANILLA)
   color        Color        @default(MATCH_FLAVOR)
@@ -39,9 +42,8 @@ model Cupcake {
   icingColor   IcingColor   @default(MATCH_FLAVOR)
   icingFlavor  IcingFlavor  @default(VANILLA)
   toppings     Topping[]
-  price        Int
-  Order        Order?       @relation(fields: [orderId], references: [id])
-  orderId      String?
+  price        Float
+  orders       Order[]
 }
 
 model Topping {
@@ -51,7 +53,16 @@ model Topping {
   amount    ToppingAmount?
   cupcake   Cupcake?       @relation(fields: [cupcakeId], references: [id])
   cupcakeId String?
-  price     Int?
+  price     Float?
+}
+
+model Copy {
+  id        String         @id @default(cuid())
+  language  Language
+  title     String
+  text      String
+  cupcake   Cupcake?       @relation(fields: [cupcakeId], references: [id])
+  cupcakeId String?
 }
 
 enum IcingTexture {
@@ -138,4 +149,9 @@ enum OrderStatus {
   IN_PROGRESS
   COMPLETED
   CANCELLED
+}
+
+enum Language {
+  ENGLISH
+  RUSSIAN
 }

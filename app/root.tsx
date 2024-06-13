@@ -40,6 +40,11 @@ export let handle = {
 export function links() {
   return [
     {
+      rel: 'icon',
+      href: '/favicon.ico',
+      type: 'image/x-icon',
+    },
+    {
       rel: 'stylesheet',
       href: appStyles,
       as: 'style',

@@ -3,7 +3,7 @@ function capitalize(str: string) {
 }
 
 function snakeCase(str: string) {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
+  return str.replace(/[A-Z]/g, (letter) => letter.toLowerCase()).replace(/\s/g, '_')
 }
 
 function pluralizeY(str: string) {

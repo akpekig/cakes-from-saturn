@@ -93,7 +93,7 @@
     .navigation-cart {
       color: $scarlet;
 
-      @media (prefers-reduced-motion: no-preference) {
+      @include no-reduced-motion {
         transition: color 0.5s;
       }
     }

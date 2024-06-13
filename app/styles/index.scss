@@ -43,7 +43,7 @@
     height: 1.25rem;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
+  @include no-reduced-motion {
     animation: rotate-stars 1s;
   }
 }
@@ -112,7 +112,7 @@
   &:first-child {
     opacity: 0.75;
 
-    @media (prefers-reduced-motion: no-preference) {
+    @include no-reduced-motion {
       animation: float-cupcake-left 3s ease-in-out infinite;
     }
   }
@@ -120,7 +120,7 @@
   &:last-child {
     transform: rotate(-30deg);
 
-    @media (prefers-reduced-motion: no-preference) {
+    @include no-reduced-motion {
       animation: float-cupcake-right 3s ease-in-out infinite;
     }
   }
@@ -144,12 +144,16 @@
   justify-content: center;
   align-items: stretch;
   gap: 1rem;
+
+  li {
+    flex: 0 1 calc(33.33% - 1rem);
+  }
 }
 
 .index-menu-item {
   display: flex;
+  width: 100%;
   flex-flow: column nowrap;
-  flex: 0 1 calc(33.33% - 1rem);
   justify-content: center;
   align-items: center;
 
@@ -288,10 +292,11 @@
 
   .index-contact-form-field-textarea,
   .index-contact-form-field-text-input {
+    @include rounded-corners;
+
     width: 100%;
     padding: 0.5rem;
     border: 1px solid $pink-light;
-    border-radius: 5px;
     background: $pink-light;
     color: $scarlet;
     font-size: 1rem;
@@ -303,7 +308,7 @@
       left: 0.5rem;
       font-size: 0.75rem;
 
-      @media (prefers-reduced-motion: no-preference) {
+      @include no-reduced-motion {
         transition:
           top 0.25s,
           font-size 0.25s;

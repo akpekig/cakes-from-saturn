@@ -1,0 +1,117 @@
+{
+    "pitch.1": [
+        {
+            "id": "pitch1name_en",
+            "language": "ENGLISH",
+            "title": "name",
+            "text": "Double Chocolate Cupcake",
+            "cupcakeId": "1"
+        },
+        {
+            "id": "pitch1description_en",
+            "language": "ENGLISH",
+            "title": "description",
+            "text": "Delicious chocolate cupcake with chocolate icing topped with white candy hearts. Perfect for chocolate lovers!",
+            "cupcakeId": "1"
+        },
+        {
+            "id": "pitch1ingredients_en",
+            "language": "ENGLISH",
+            "title": "ingredients",
+            "text": "wheat flour, sugar, alkalised cocoa powder, baking powder (raising agents (E 450 (diphosphates), E 500 (sodium carbonates)), starch), eggs, butter (milk, salt), salt, milk, cocoa mass, cocoa butter, sprinkles (sugar, rice flour, coconut oil, water, shea fat, fruit and vegetable concentrates [radish, apple, lemon, blackcurrant], thickener (sodium carboxymethylcellulose), flavouring)",
+            "cupcakeId": "1"
+        }
+    ],
+    "pitch.2": [
+        {
+            "id": "pitch2name_en",
+            "language": "ENGLISH",
+            "title": "name",
+            "text": "Vanilla Cupcake",
+            "cupcakeId": "2"
+        },
+        {
+            "id": "pitch2description_en",
+            "language": "ENGLISH",
+            "title": "description",
+            "text": "Sweet vanilla cupcake with vanilla icing topped with chocolate chips, pink sprinkles, and chocolate bars. A classic!",
+            "cupcakeId": "2"
+        },
+        {
+            "id": "pitch2ingredients_en",
+            "language": "ENGLISH",
+            "title": "ingredients",
+            "text": "wheat flour, sugar, vanilla bean, baking powder (raising agents (E 450 (diphosphates), E 500 (sodium carbonates)), starch), eggs, butter (milk, salt), salt, milk, cocoa mass, cocoa butter, sprinkles (sugar, rice flour, coconut oil, water, shea fat, fruit and vegetable concentrates [radish, apple, lemon, blackcurrant], thickener (sodium carboxymethylcellulose), flavouring)",
+            "cupcakeId": "2"
+        }
+    ],
+    "pitch.3": [
+        {
+            "id": "pitch3name_en",
+            "language": "ENGLISH",
+            "title": "name",
+            "text": "Raspberry Cupcake",
+            "cupcakeId": "3"
+        },
+        {
+            "id": "pitch3description_en",
+            "language": "ENGLISH",
+            "title": "description",
+            "text": "Raspberry-flavoured cupcake with vanilla icing topped with white candy hearts. A fruity delight!",
+            "cupcakeId": "3"
+        },
+        {
+            "id": "pitch3ingredients_en",
+            "language": "ENGLISH",
+            "title": "ingredients",
+            "text": "wheat flour, sugar, vanilla bean, raspberries, baking powder (raising agents (E 450 (diphosphates), E 500 (sodium carbonates)), starch), eggs, butter (milk, salt), salt, milk, sprinkles (sugar, rice flour, coconut oil, water, shea fat, fruit and vegetable concentrates [radish, apple, lemon, blackcurrant], thickener (sodium carboxymethylcellulose), flavouring)",
+            "cupcakeId": "3"
+        }
+    ],
+    "pitch.4": [
+        {
+            "id": "pitch4name_en",
+            "language": "ENGLISH",
+            "title": "name",
+            "text": "Chocolate Cupcake",
+            "cupcakeId": "4"
+        },
+        {
+            "id": "pitch4description_en",
+            "language": "ENGLISH",
+            "title": "description",
+            "text": "Chocolate cake with smooth vanilla icing topped with rainbow sprinkles. Keep it simple and sweet!",
+            "cupcakeId": "4"
+        },
+        {
+            "id": "pitch4ingredients_en",
+            "language": "ENGLISH",
+            "title": "ingredients",
+            "text": "wheat flour, sugar, vanilla bean, alkalised cocoa powder, baking powder (raising agents (E 450 (diphosphates), E 500 (sodium carbonates)), starch), eggs, butter (milk, salt), salt, milk, cocoa mass, cocoa butter, sprinkles (sugar, rice flour, coconut oil, water, shea fat, fruit and vegetable concentrates [radish, apple, lemon, blackcurrant], thickener (sodium carboxymethylcellulose), flavouring)",
+            "cupcakeId": "4"
+        }
+    ],
+    "pitch.5": [
+        {
+            "id": "pitch5name_en",
+            "language": "ENGLISH",
+            "title": "name",
+            "text": "Strawberry Cupcake",
+            "cupcakeId": "5"
+        },
+        {
+            "id": "pitch5description_en",
+            "language": "ENGLISH",
+            "title": "description",
+            "text": "Strawberry-flavoured cupcake with strawberry icing topped with seasonal cherries. Summer in every bite!",
+            "cupcakeId": "5"
+        },
+        {
+            "id": "pitch5ingredients_en",
+            "language": "ENGLISH",
+            "title": "ingredients",
+            "text": "wheat flour, sugar, vanilla bean, strawberries, cherries, baking powder (raising agents (E 450 (diphosphates), E 500 (sodium carbonates)), starch), eggs, butter (milk, salt), salt, milk",
+            "cupcakeId": "5"
+        }
+    ]
+}

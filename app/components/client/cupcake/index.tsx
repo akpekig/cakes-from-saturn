@@ -44,16 +44,24 @@ export default function Cupcake(props: CupcakeProps) {
   const [displayCupcake, setDisplayCupcake] = useState<boolean>(false)
   const cakeColor =
     props.color === $Enums.Color.MATCH_FLAVOR ? props.flavor : props.color
-  const cakeColorClassName = `cake cake-${cakeColor.toLowerCase()}`
-  const icingProps = {
-    icingColor: props.icingColor,
-    icingFlavor: props.icingFlavor,
-    icingTexture: props.icingTexture,
-  }
-  const toppingsProps = {
-    toppings: props.toppings.map((topping) => ({ ...topping, cupcake: props })),
-    className: props.toppingsClassName,
-  }
+
+  // Screen reader map for cake properties
+  const srMap: TStringMap = props.translate ? {
+    'cake': `flavor.${props.flavor}`,
+    'cake.color': `color.${props.color}`,
+    'icing': `flavor.${props.icingFlavor}`,
+    'icing.color': `color.${props.icingColor}`,
+    'icing.texture': `icing.texture.${props.icingTexture}`,
+  } : {}
+
+  // Screen reader map for topping properties
+  const toppingSrMap: TStringMap = props.translate && !!props.toppings ? props.toppings.reduce((acc: {[key: string]: TStringMap}, { id, type, amount, color}) => {
+    acc[`${id}`] = {}
+    if (type) acc[`${id}`]["type"] = `topping.${type}`
+    if (amount) acc[`${id}`]["amount"] = `topping.${amount}`
+    if (color) acc[`${id}`]["color"] = `color.${color}`
+    return acc
+  }, {}) : {}
 
   useEffect(() => {
     setDisplayCupcake(true)
@@ -84,61 +92,36 @@ export default function Cupcake(props: CupcakeProps) {
             <stop offset="90%" />
           </linearGradient>
           <path
-            className={cakeColorClassName}
+            className={`cake cake-${cakeColor.toLowerCase()}`}
             d="m100 381.5l0.3-0.1c0 0 84.5-48.9 259.9-48.9 175.4 0 260.4 49 260.4 49z"
           />
-          <Icing {...icingProps} />
-          {props.toppings && <Toppings {...toppingsProps} />}
-          <Case caseColor={props.caseColor} />
+          <Icing {...props} />
+          {props.toppings && <Toppings {...props} className={props.toppingsClassName} />}
+          <Case {...props} />
         </svg>
       )}
       {props.translate && (
         <dl className="visually-hidden" aria-label={t('cupcake.selection')}>
-          <dt>{t('cupcake.cake')}</dt>
-          <dd>
-            {t(`cupcake.flavor.${props.flavor.toString().toLowerCase()}`)}
-          </dd>
-          <dt>{t('cupcake.cake.color')}</dt>
-          <dt>{t(`cupcake.color.${props.color.toString().toLowerCase()}`)}</dt>
-          <dt>{t('cupcake.icing')}</dt>
-          <dd>
-            {t(`cupcake.flavor.${props.icingFlavor.toString().toLowerCase()}`)}
-          </dd>
-          <dt>{t('cupcake.icing.color')}</dt>
-          <dd>
-            {t(`cupcake.color.${props.icingColor.toString().toLowerCase()}`)}
-          </dd>
-          <dt>{t('cupcake.icing.texture')}</dt>
-          <dd>
-            {t(
-              `cupcake.icing.texture.${props.icingTexture.toString().toLowerCase()}`,
-            )}
-          </dd>
-          <dt>{t('cupcake.topping')}</dt>
+          {Object.keys(srMap).map((key) => (
+            <div key={`cupcake-${props.id}-${key.replace('\.', '-')}`}>
+              <dt>{t(`cupcake.${key}`)}</dt>
+              <dd>{t(`cupcake.${srMap[key].toLowerCase()}`)}</dd>
+            </div>
+          ))}
           {!!props.toppings &&
-            props.toppings.map((topping, index) => (
-              <div key={`cupcake-${props.id}-topping-${topping.id}-${index}`}>
-                <dd>
-                  {t(
-                    `cupcake.topping.${topping.type.toString().toLowerCase()}`,
-                  )}
-                </dd>
-                {topping.amount && (
-                  <dd>
-                    {t(
-                      `cupcake.topping.${topping.amount.toString().toLowerCase()}`,
-                    )}
+          (<div>
+            <dt>{t('cupcake.topping')}</dt>
+            {props.toppings.map((topping, index) => (
+              <div key={`cupcake-${props.id}-${topping.id}-${index}`}>
+                {Object.keys(toppingSrMap[topping.id]).map((key, innerIndex) => (
+                  <dd key={`cupcake-${props.id}-${topping.id}-${index}-${innerIndex}-${key.replace('\.', '-')}`}>
+                   {t(`cupcake.${toppingSrMap[topping.id][key].toLowerCase()}`)}
                   </dd>
-                )}
-                {topping.color && (
-                  <dd>
-                    {t(
-                      `cupcake.color.${topping.color.toString().toLowerCase()}`,
-                    )}
-                  </dd>
-                )}
+                ))}
               </div>
             ))}
+            </div>
+            )}
         </dl>
       )}
     </>

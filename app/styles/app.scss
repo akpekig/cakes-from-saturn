@@ -1,3 +1,10 @@
+$large-stars-size: 400px;
+$large-stars-timing: 40s;
+$medium-stars-size: 300px;
+$medium-stars-timing: 30s;
+$small-stars-size: 200px;
+$small-stars-timing: 20s;
+
 * {
   font-family:
     'Comfortaa',
@@ -131,10 +138,10 @@ ul {
 
   .stars {
     background-image: url('/images/stars-large.png');
-    background-size: 400px;
+    background-size: $large-stars-size;
 
-    @media (prefers-reduced-motion: no-preference) {
-      animation: stars-large 20s linear infinite;
+    @include no-reduced-motion {
+      animation: stars-large $large-stars-timing linear infinite;
     }
 
     &,
@@ -152,26 +159,27 @@ ul {
 
     &:before {
       background-image: url('/images/stars-small.png');
-      background-size: 200px;
+      background-size: $small-stars-size;
 
-      @media (prefers-reduced-motion: no-preference) {
-        animation: stars-small 10s linear infinite;
+      @include no-reduced-motion {
+        animation: stars-small $small-stars-timing linear infinite;
       }
     }
 
     &:after {
       background-image: url('/images/stars-medium.png');
-      background-size: 300px;
+      background-size: $medium-stars-size;
 
-      @media (prefers-reduced-motion: no-preference) {
-        animation: stars-medium 15s linear infinite;
+      @include no-reduced-motion {
+        animation: stars-medium $medium-stars-timing linear infinite;
       }
     }
   }
 }
 
 .button {
-  border-radius: 5px;
+  @include rounded-corners;
+
   padding: 0.5rem 1rem;
   background: $scarlet;
   color: $pink-light;
@@ -198,7 +206,7 @@ ul {
     .language-select-icon {
       color: $scarlet;
 
-      @media (prefers-reduced-motion: no-preference) {
+      @include no-reduced-motion {
         transition: color 0.5s;
       }
     }
@@ -211,6 +219,8 @@ ul {
 }
 
 .language-select-list {
+  @include rounded-corners;
+
   position: absolute;
   bottom: 4rem;
   right: 1rem;
@@ -218,7 +228,6 @@ ul {
   width: 10rem;
   flex-flow: column nowrap;
   align-items: center;
-  border-radius: 5px;
   background: $pink-light;
   overflow: hidden;
 
@@ -248,17 +257,17 @@ ul {
 
 @keyframes stars-large {
   from {
-    background-position: 0 200px;
+    background-position: 0 $large-stars-size;
   }
 
   to {
-    background-position: 200px 0;
+    background-position: $large-stars-size 0;
   }
 }
 
 @keyframes stars-medium {
   from {
-    background-position: 0 150px;
+    background-position: 0 $medium-stars-size;
   }
 
   to {
@@ -268,10 +277,10 @@ ul {
 
 @keyframes stars-small {
   from {
-    background-position: 0 100px;
+    background-position: 0 $small-stars-size;
   }
 
   to {
-    background-position: -100px 0;
+    background-position: -#{$small-stars-size} 0;
   }
 }

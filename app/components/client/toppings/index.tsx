@@ -11,14 +11,7 @@ import { links as heartsLinks } from './hearts'
 import { links as sprinklesLinks } from './sprinkles'
 
 interface ToppingsProps {
-  toppings: Prisma.ToppingGetPayload<{
-    include: {
-      type: true
-      color: true
-      amount: true
-      cupcake: true
-    }
-  }>[]
+  toppings: TTopping[],
   className?: string
 }
 
